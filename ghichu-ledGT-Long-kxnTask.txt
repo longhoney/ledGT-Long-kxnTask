@@ -1,0 +1,19 @@
+Bấm phím số tại ô Serial để điều khiển, tương tự như bài của anh Khôi
+0 = tắt đèn
+1 = băng qua đường
+2 = nháy led vàng
+2' = chuyển sang đèn xanh 5 giây rồi đèn vàng nháy liên tục [chưa có kiểm chứng cụ thể]
+--> Cần tạo thêm 1 file header. vì đã tắt longGT, không thể dùng lại longGT dù trong 1 khoảng ngắn
+--> không dùng kDelay() tại lenh startBlink ... vì nó đặt trong switch_case_break
+--> phải thêm case trong file Blink thì mới có kết quả khác.
+
+3 = sáng 3 đèn tuẩn tự
+4 = Tu '3' --> sáng đỏ 1 - xanh 2 (mặc định) - giữ nguyên trạng thái - xe ưu tiên đi qua
+5 = Tu '3' --> sáng xanh 1 - đỏ 2 - giữ nguyên trạng thái - xe ưu tiên đi qua
+
+Tôi phải tự làm lại được bài giống của anh Khôi đã. Trong bài làm của tôi, tôi phải chú thích rõ, dòng code này làm gì. Vừa làm vừa hiểu bài, về sau tiết kiệm thời gian đọc lại.
+1. Điều khiển 1 cột đèn [v]
+2. Điều khiển 2 cột đèn [v]
+3. Điều khiển thêm các chế độ tôi muốn bổ sung
+a. băng qua đường [v]
+b. 1 file đọc trạng thái case '3', trả kết quả về Serial Monitor
