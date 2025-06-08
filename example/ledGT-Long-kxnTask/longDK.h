@@ -112,7 +112,7 @@ void urgent5()
   //Che do sang 3 den
   uint8_t isThreeColor_Idle()
   {
-    if(longGT1.isStateIdle() && longGT2.isStateIdle())   //thu vien "kxnTask.h"
+    if(longGT1.isStateIdle() && longGT2.isStateIdle())  
     {
       return true; //neu Che do sang 3 den dang nhan roi, tra ve gia tri true = 1
     }
@@ -122,11 +122,11 @@ void urgent5()
   //Che do nhay den vang
   uint8_t isBlinkYellowColor_Idle()
   {
-    if(longBlinkY1.isStateIdle() && longBlinkY2.isStateIdle())   //thu vien "kxnTask.h"
+    if(longBlinkY1.isStateIdle() && longBlinkY2.isStateIdle())  
     {
-      return true;  //neu Che do nhay den vang dang nhan roi, tra ve gia tri true = 1
+      return true;  
     }
-    return false; //neu Che do nhay den vang dang nhan roi, tra ve gia tri false = 0
+    return false;
   }
 
 void stop() //ham tat toan bo den, hay tat 2 che do
