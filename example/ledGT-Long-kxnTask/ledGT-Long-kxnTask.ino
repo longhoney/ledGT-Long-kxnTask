@@ -4,6 +4,9 @@
     - '1': Chuyen den cho nguoi di bo qua duong
     - '2': Nhay den vang canh bao 1 giay sang 1 giay tat
     - '3': Cot den hoat dong voi 3 den luan phien
+    - '4': Giu nguyen tinh trang den de xe uu tien di qua #1 R1-G2 --> tra ve '3'
+    - '5': Giu nguyen tinh trang den de xe uu tien di qua #2 G1-R2 --> tra ve trang thai dem --> ve 3
+    - '6': '5' --> trang thai dem --> ve 3 (mot case '3' thu 2, bat dau voi G1-R2)
   Phan nhiem vu cac file
     - "ledGT-Long-kxnTask.ino": file nhan yeu cau tu nguoi dung --> kiem tra trang thai he thong --> ra lenh thuc hien yeu cau
     - "longDK.h": file nhan lenh tu file "ledGT-Long-kxnTask.ino", thuc hien nhiem vu - bat/tat cac che do, lay tu 2 file con lai
@@ -76,7 +79,17 @@ void checkSerial()
         }
       break; 
     
-      
+      case '4':
+        longDK1.urgent4();
+      break;  
+
+      case '5':
+        longDK1.urgent5();
+      break;
+
+      case '6':0
+        longDK1.startThreeColor1();
+      break;
     }
   }
 }

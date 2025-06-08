@@ -41,9 +41,7 @@ void setup(unsigned long timeON_G_, unsigned long timeON_Y_) //tao khung de dien
   timeON_G = timeON_G_;
   timeON_Y = timeON_Y_;
   timeON_R = timeON_G + timeON_Y;
-  pinMode(pinG, OUTPUT);  //che do OUTPUT cho chan ket noi voi den
-  pinMode(pinY, OUTPUT);
-  pinMode(pinR, OUTPUT);
+  pinMode(pinG, OUTPUT); pinMode(pinY, OUTPUT); pinMode(pinR, OUTPUT);
 }
 
 void loop()
