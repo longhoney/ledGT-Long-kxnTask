@@ -1,15 +1,18 @@
-#ifndef longGT__H
-#define longGT__H
+#ifndef longCross__H
+#define longCross__H
 #include "kxnTask.h"
 
-DEFINE_TASK_STATE(longGT) //thu vien "kxnTask.h"
+DEFINE_TASK_STATE(longCross) //thu vien "kxnTask.h"
 {
-  longGT_ON_R,  //sang den do
-  longGT_ON_Y,  //sang den vang
-  longGT_ON_G,  //sang den xanh
+  longCross_ON_R,  //sang den do
+  longCross_ON_Y,  //sang den vang
+  longCross_ON_G,  //sang den xanh
+  longCross_ON_Y1,  //bien dem
+  longCross_ON_G1,  //bien dem
+  longCross_OFF
 };
 
-CREATE_TASK(longGT)
+CREATE_TASK(longCross)
 //Khai bao bien cau hinh chan cot den
 uint8_t pinG; //den xanh
 uint8_t pinY; //den vang
@@ -48,23 +51,42 @@ void setup(unsigned long timeON_G_, unsigned long timeON_Y_) //tao khung de dien
 
 void loop()
 {
-  //switch_case_break
-  switch (getState()) //thu vien "kxnTask.h"
+  switch(getState())  //xanh -> vang -> do -> xanh1 -> vang1
   {
-    case longGT_ON_R: //bat den do
-      Red();
-      setState(longGT_ON_G); //chuyen sang case bat den xanh
-      kDelay(timeON_R);  //them vao thoi gian sang den
-    break;
-    case longGT_ON_G: //bat den xanh
+    case longCross_ON_G:
       Green();
-      setState(longGT_ON_Y);  //chuyen sang case bat den vang
+      setState(longCross_ON_Y); //chuyen sang case bat den vang
       kDelay(timeON_G);  //them vao thoi gian sang den
     break;
-    case longGT_ON_Y: //bat den vang
+
+    case longCross_ON_Y:
       Yellow();
-      setState(longGT_ON_R);  //tro lai case bat den do
-      kDelay(timeON_Y); //them vao thoi gian sang den
+      setState(longCross_ON_R); //chuyen sang case bat den do
+      kDelay(timeON_Y);  //them vao thoi gian sang den
+    break;
+
+    case longCross_ON_R:
+      Red();
+      setState(longCross_ON_G1); //chuyen sang case bat den xanh1
+      kDelay(timeON_R);  //them vao thoi gian sang den
+    break;
+    
+    case longCross_ON_G1:
+      Green();
+      setState(longCross_ON_Y1); //chuyen sang case bat den vang1
+      kDelay(timeON_G);  //them vao thoi gian sang den
+    break;
+
+    case longCross_ON_Y1:
+      Yellow();
+      setState(longCross_OFF); //chuyen sang case bat den do
+      kDelay(timeON_Y);  //them vao thoi gian sang den
+    break;
+
+    case longCross_OFF:
+      this->stop();
+      setState(longCross_ON_Y1);
+      kDelay(timeON_Y);  //them vao thoi gian sang den
     break;
   }
 }
@@ -90,27 +112,19 @@ void loop()
     digitalWrite(pinY, LOW);
     digitalWrite(pinG, LOW);
   }
-//Cau hinh ham dung trong file longDK
-  void startR() //ham bat den do
+//Ham dieu khien chinh
+  void start()
   {
-    setState(longGT_ON_R); //goi tu trong switch_case_break
+    setState(longCross_ON_G);
     kxnTaskManager.add(this); //them vao kxnTaskManager de quan ly
   }
-
-  void startY() //ham bat den vang
-  {
-    setState(longGT_ON_Y); //goi tu trong switch_case_break
-    kxnTaskManager.add(this); //them vao kxnTaskManager de quan ly
-  }
-
-  void startG() //ham bat den xanh
-  {
-    setState(longGT_ON_G); //goi tu trong switch_case_break
-    kxnTaskManager.add(this); //them vao kxnTaskManager de quan ly
-  }
-//Cau hinh cho tinh huong nguoi di bo bang qua duong
-
-
+//Bao che do dang hoat dong
+void runFast()
+{  
+  // this function will be called without delay
+  Serial.println("longCross running");
+}
+//Tat che do nguoi di bo bang qua duong
 void stop() //tat toan bo den
 {
   digitalWrite(pinR, LOW);
