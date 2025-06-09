@@ -28,47 +28,43 @@
 */
 
 #include "longDK.h"
-//Khai bao bien moi thuoc class longCtrl
+//Khai bao bien thuoc class longDK
 longDK longDK1;
-//Cau hinh toc do baudrate de su dung Serial Monitor
 
 void setup()
 {
   Serial.begin(115200);
-  longDK1.setup();   //Cau hinh bien longDK1 thuoc class longCtrl
+  longDK1.setup(); 
 }
   
 void loop()
 {
-  //Trong vong loop(), Chay kxnTaskManager de quan ly toan bo he thong den giao thong
-  kxnTaskManager.run(millis());   //thu vien "kxnTask.h"
-  //chay lenh kiem tra gia tri nguoi dung nhap vao o Serial Monitor
-  checkSerial();
+  kxnTaskManager.run(millis());  //kiem tra idle
+  checkSerial();  //kiem tra gia tri nguoi dung nhap vao o Serial Monitor
 }
 
-//Dinh nghia lenh kiem tra gia tri nguoi dung nhap vao o Serial Monitor
-void checkSerial()  
+void checkSerial()  //Dinh nghia lenh kiem tra gia tri
 {
   if(Serial.available())    //ham co san cua Arduino. tuong tu nhu Serial.begin()
   {
-    //luu gia tri nguoi dung nhap vao o Serial Monitor
     char tt = Serial.read();  //kieu bien char - character = ky tu don
-    //switch_case_break
-    switch(tt) 
+    switch(tt)  //switch_case_break (co example trong muc control cua Arduino)
     {
       case '0':
-        longDK1.stop();   //gui yeu cau den "longDK.h"
+        longDK1.stopALL(); 
         Serial.println("OFF");
       break;  //ket thuc 1 case
       
       case '1':
         longDK1.cross();
+        Serial.println("longCross running");
       break;
 
       case '2':
         if(longDK1.isBlinkYellowColor_Idle()) 
         {
-          longDK1.startBlinkYellowColor(); 
+          longDK1.startBlinkYellowColor();
+          Serial.println("longBlink running"); 
         }
       break;  
       

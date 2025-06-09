@@ -23,7 +23,8 @@ unsigned long timeON_G; //den xanh
 unsigned long timeON_Y; //den vang
 unsigned long timeON_R; //den do [timeON_R = timeON_G + timeON_Y]
 
-longBlink *slowLight;
+longBlink *slowLight;   //tao bien slowLight tro toi class longBlink
+//muc dich, chi can thay doi so thoi gian sang/tat trong che do Blink, thi che do Cross tu dong bo thoi gian theo
 
 //Ham setPin() de cau hinh chan cho cot den 1
 void setPin1(uint8_t pin_G, uint8_t pin_Y, uint8_t pin_R)

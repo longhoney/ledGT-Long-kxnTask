@@ -1,6 +1,6 @@
 Bấm phím số tại ô Serial để điều khiển, tương tự như bài của anh Khôi
 0 = tắt đèn
-1 = băng qua đường
+1 = băng qua đường: xanh -> vang -> do -> vang -> nhay vang
 2 = nháy led vàng
 2' = chuyển sang đèn xanh 5 giây rồi đèn vàng nháy liên tục [chưa có kiểm chứng cụ thể]
 --> Cần tạo thêm 1 file header. vì đã tắt longGT, không thể dùng lại longGT dù trong 1 khoảng ngắn
@@ -17,3 +17,33 @@ Tôi phải tự làm lại được bài giống của anh Khôi đã. Trong b�
 3. Điều khiển thêm các chế độ tôi muốn bổ sung
 a. băng qua đường [v]
 b. 1 file đọc trạng thái case '3', trả kết quả về Serial Monitor
+
+======================
+2025_06_09
+TỔNG HỢP LẠI CÁC TRẠNG THÁI CỦA HỆ THỐNG
+0 = Tắt toàn bộ đèn
+1 = Băng qua đường
+2 = Nháy đèn vàng chậm cảnh báo
+3 = Sáng 3 đèn bình thường
+4 = Giữ đèn xanh đường dọc
+5 = Giữ đèn xanh đường ngang
+Chú thích 1: Thư viện kxnTask dùng để quản lý các state: kiểm tra trạng thái nhàn rỗi (idle), gọi chế độ muốn chạy. Trong chế độ đó, nội dung công việc được các file con thiết lập.
+Chú thích 2: switch_case_break (co example trong muc control cua Arduino)
+
+FILE GỐC TÔI KẾ THỪA TỪ ANH KHÔI
+0 = Tắt toàn bộ đèn
+2 = Nháy đèn vàng chậm cảnh báo
+3 = Sáng 3 đèn bình thường
+
+HOÀN THIỆN BÀI CODE TỐT HƠN
+1. Tổ chức lại các file code bằng cách ghi chú lại: chạy hàm B trong file con khi chạy hàm A trong file quản lý. [v]
+2. Sử dụng triệt để con trỏ: Các trạng thái mới, sử dụng lại được câu lệnh từ trạng thái cũ. Các file Sử dung chung setup
+3. Chấp nhận tạo thêm file để thực hiện công việc trong trạng thái băng qua đường, giữ đèn xanh cho làn ưu tiên. Nhưng sẽ tận dụng con trỏ để không làm các file quá dài
+4. Học thêm về cấu trúc dữ liệu.
+
+CON TRỎ
+Chú thích: ChatGPT hỗ trợ tôi hiểu hơn 1 chút https://chatgpt.com/share/68476c4a-2fac-8004-af5b-12117b341b61
+1. File A muốn sử dụng lệnh từ file B thì phải khai báo file B bằng lệnh #include
+2. Tạo 1 biến trong file A mà trỏ đến file B thì dùng dấu sao: fileB *Tenbien
+3. Trong nội bộ 1 file, nếu muốn từ hàm C trỏ đến hàm D thì dùng dấu “->”: this->start(),Con trỏ bằng ký tự “&” dùng khi nào? → Dùng để trỏ đến biến/ tham số
+

@@ -11,43 +11,59 @@ DEFINE_TASK_STATE(longGT) //thu vien "kxnTask.h"
 
 CREATE_TASK(longGT)
 //Khai bao bien cau hinh chan cot den
-uint8_t pinG; //den xanh
-uint8_t pinY; //den vang
-uint8_t pinR; //den do
+  uint8_t pinG; //den xanh
+  uint8_t pinY; //den vang
+  uint8_t pinR; //den do
 //Khai bao bien chua thoi gian sang cua tung den
-unsigned long timeON_G; //den xanh
-unsigned long timeON_Y; //den vang
-unsigned long timeON_R; //den do [timeON_R = timeON_G + timeON_Y]
+  unsigned long timeON_G; //den xanh
+  unsigned long timeON_Y; //den vang
+  unsigned long timeON_R; //den do [timeON_R = timeON_G + timeON_Y]
 
-//Ham setPin() de cau hinh chan cho cot den 1
-void setPin1(uint8_t pin_G, uint8_t pin_Y, uint8_t pin_R)
-{
-  this->pinG = pin_G;
-  this->pinY = pin_Y;
-  this->pinR = pin_R;
-}
+//Ham cau hinh chan cho cot den
+  //cot den 1
+    void setPin1(uint8_t pin_G, uint8_t pin_Y, uint8_t pin_R)
+    {
+      this->pinG = pin_G;
+      this->pinY = pin_Y;
+      this->pinR = pin_R;
+    }
 
-//Ham setPin() de cau hinh chan cho cot den 2
-void setPin2(uint8_t pin__G, uint8_t pin__Y, uint8_t pin__R)
-{
-  this->pinG = pin__G;
-  this->pinY = pin__Y;
-  this->pinR = pin__R;
-}
+  //cot den 2
+    void setPin2(uint8_t pin__G, uint8_t pin__Y, uint8_t pin__R)
+    {
+      this->pinG = pin__G;
+      this->pinY = pin__Y;
+      this->pinR = pin__R;
+    }
 
+//tao khung de dien so thoi gian muon den sang
+  void setup(unsigned long timeON_G_, unsigned long timeON_Y_) 
+  { 
+    timeON_G = timeON_G_;
+    timeON_Y = timeON_Y_;
+    timeON_R = timeON_G + timeON_Y;
+    pinMode(pinG, OUTPUT); pinMode(pinY, OUTPUT); pinMode(pinR, OUTPUT);
+  }
 
-void setup(unsigned long timeON_G_, unsigned long timeON_Y_) //tao khung de dien so thoi gian muon den sang
-{ 
-  timeON_G = timeON_G_;
-  timeON_Y = timeON_Y_;
-  timeON_R = timeON_G + timeON_Y;
-  pinMode(pinG, OUTPUT); pinMode(pinY, OUTPUT); pinMode(pinR, OUTPUT);
-}
+//Phim tat bat den
+  void Green()
+  {
+    digitalWrite(pinG, HIGH); digitalWrite(pinY, LOW); digitalWrite(pinR, LOW);
+  }
+
+  void Yellow()
+  {
+    digitalWrite(pinG, LOW); digitalWrite(pinY, HIGH); digitalWrite(pinR, LOW);
+  }
+
+  void Red()
+  {
+    digitalWrite(pinG, LOW); digitalWrite(pinY, LOW); digitalWrite(pinR, HIGH);
+  }
 
 void loop()
 {
-  //switch_case_break
-  switch (getState()) //thu vien "kxnTask.h"
+  switch (getState()) //switch_case_break
   {
     case longGT_ON_R: //bat den do
       Red();
@@ -67,56 +83,33 @@ void loop()
   }
 }
 
-//Phim tat bat den
-  void Green()
-  {
-    digitalWrite(pinR, LOW);
-    digitalWrite(pinY, LOW);
-    digitalWrite(pinG, HIGH);
-  }
-
-  void Yellow()
-  {
-    digitalWrite(pinR, LOW);
-    digitalWrite(pinY, HIGH);
-    digitalWrite(pinG, LOW);
-  }
-
-  void Red()
-  {
-    digitalWrite(pinR, HIGH);
-    digitalWrite(pinY, LOW);
-    digitalWrite(pinG, LOW);
-  }
-//Cau hinh ham dung trong file longDK
-  void startR() //ham bat den do
+//Cau hinh ham su dung trong file longDK
+  void startR() //Bat dau sang tuan tu voi den do
   {
     setState(longGT_ON_R); //goi tu trong switch_case_break
-    kxnTaskManager.add(this); //them vao kxnTaskManager de quan ly
+    kxnTaskManager.add(this); 
   }
-
-  void startY() //ham bat den vang
+  /* Chua dung toi nen tam thoi loai bo
+  void startY() //Bat dau sang tuan tu voi den vang
   {
-    setState(longGT_ON_Y); //goi tu trong switch_case_break
-    kxnTaskManager.add(this); //them vao kxnTaskManager de quan ly
+    setState(longGT_ON_Y); 
+    kxnTaskManager.add(this); 
   }
-
-  void startG() //ham bat den xanh
+  */
+  void startG() //Bat dau sang tuan tu voi den xanh
   {
-    setState(longGT_ON_G); //goi tu trong switch_case_break
-    kxnTaskManager.add(this); //them vao kxnTaskManager de quan ly
+    setState(longGT_ON_G); 
+    kxnTaskManager.add(this); 
   }
-//Cau hinh cho tinh huong nguoi di bo bang qua duong
 
-
-void stop() //tat toan bo den
-{
-  digitalWrite(pinR, LOW);
-  digitalWrite(pinY, LOW);
-  digitalWrite(pinG, LOW);
-  kDelay(0); //huy bo thoi gian sang den
-  setStateIdle();   //dat ve trang thai nhan roi
-}
+  void stop() //Chay ham nay khi file DK thuc hien ham stopALL()
+  {
+    digitalWrite(pinR, LOW);
+    digitalWrite(pinY, LOW);
+    digitalWrite(pinG, LOW);
+    kDelay(0); //huy bo thoi gian sang den
+    setStateIdle();   //dat ve trang thai nhan roi
+  }
 
 END
 #endif
