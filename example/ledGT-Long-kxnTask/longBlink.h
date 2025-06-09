@@ -59,7 +59,7 @@ void stop()
   setStateIdle();
 }
 
-void runFast()
+void runFast() //debug only
 {  
   // this function will be called without delay
   Serial.println("longBlink running");

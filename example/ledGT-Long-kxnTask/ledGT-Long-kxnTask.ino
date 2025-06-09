@@ -87,7 +87,7 @@ void checkSerial()
         longDK1.urgent5();
       break;
 
-      case '6':0
+      case '6':
         longDK1.startThreeColor1();
       break;
     }

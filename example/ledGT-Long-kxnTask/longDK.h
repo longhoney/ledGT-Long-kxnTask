@@ -3,7 +3,8 @@
 #include "kxnTask.h"
 #include "longBlink.h"
 #include "longGT.h"
-#include "longCross.h"
+//#include "longCross.h"
+#include "longCross_kxn.h"
 #include "longURG.h"
 
 DEFINE_TASK_STATE(longDK) //thu vien "kxnTask.h"
@@ -32,11 +33,15 @@ void setup()
     //Che do nguoi di bo bang qua duong
     longCross1.setPin1(8, 7, 6); 
     longCross2.setPin2(5, 4, 3); 
-    longCross1.setup(3000, 1000);
-    longCross2.setup(3000, 1000);
+    // longCross1.setup(3000, 1000);
+    // longCross2.setup(3000, 1000);
+
+    longCross1.setup(3000, 1000, &longBlinkY1);
+    longCross2.setup(3000, 1000, &longBlinkY2);
+
   //chinh sua thoi gian nhay cua cot den 1 va cot den 2 tai day
-    longBlinkY1.setup(7, 1000, 1000); //cu phap: (pin, timeON, timeOFF)
-    longBlinkY2.setup(4, 1000, 1000); //cu phap: (pin, timeON, timeOFF)
+    longBlinkY1.setup(7, 2000, 2000); //cu phap: (pin, timeON, timeOFF)
+    longBlinkY2.setup(4, 2000, 2000); //cu phap: (pin, timeON, timeOFF)
   //Cau hinh cho che do giu trang thai de xe uu tien di qua
     longURG1.setPin1(8, 7, 6);
     longURG2.setPin2(5, 4, 3);
