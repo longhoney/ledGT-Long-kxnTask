@@ -42,8 +42,29 @@ void setPin2(uint8_t pin__G, uint8_t pin__Y, uint8_t pin__R)
   this->pinR = pin__R;
 }
 
+//Phim tat bat den
+  void Green()
+  {
+    digitalWrite(pinR, LOW);
+    digitalWrite(pinY, LOW);
+    digitalWrite(pinG, HIGH);
+  }
 
-void setup(unsigned long timeON_G_, unsigned long timeON_Y_) //tao khung de dien so thoi gian muon den sang
+  void Yellow()
+  {
+    digitalWrite(pinR, LOW);
+    digitalWrite(pinY, HIGH);
+    digitalWrite(pinG, LOW);
+  }
+
+  void Red()
+  {
+    digitalWrite(pinR, HIGH);
+    digitalWrite(pinY, LOW);
+    digitalWrite(pinG, LOW);
+  }
+
+void setup1(unsigned long timeON_G_, unsigned long timeON_Y_) //tao khung de dien so thoi gian muon den sang
 { 
   timeON_G = timeON_G_;
   timeON_Y = timeON_Y_;
@@ -53,7 +74,7 @@ void setup(unsigned long timeON_G_, unsigned long timeON_Y_) //tao khung de dien
 
 void setup(unsigned long timeON_G_, unsigned long timeON_Y_, longBlink *pa_slowLight) //tao khung de dien so thoi gian muon den sang
 {
-  setup(timeON_G_, timeON_Y_);
+  setup1(timeON_G_, timeON_Y_);
   slowLight = pa_slowLight;
 }
 
@@ -99,45 +120,18 @@ void loop()
 
     case longCross_ON_Y1:
       slowLight->start();
-      stop();
+      //stop();
     break;
   }
 }
 
-//Phim tat bat den
-  void Green()
-  {
-    digitalWrite(pinR, LOW);
-    digitalWrite(pinY, LOW);
-    digitalWrite(pinG, HIGH);
-  }
-
-  void Yellow()
-  {
-    digitalWrite(pinR, LOW);
-    digitalWrite(pinY, HIGH);
-    digitalWrite(pinG, LOW);
-  }
-
-  void Red()
-  {
-    digitalWrite(pinR, HIGH);
-    digitalWrite(pinY, LOW);
-    digitalWrite(pinG, LOW);
-  }
 //Ham dieu khien chinh
   void start()
   {
     setState(longCross_ON_G);
     kxnTaskManager.add(this); //them vao kxnTaskManager de quan ly
-    slowLight->stop();
   }
-//Bao che do dang hoat dong
-void runFast()
-{  
-  // this function will be called without delay
-  Serial.println("longCross running");
-}
+
 //Tat che do nguoi di bo bang qua duong
 void stop() //tat toan bo den
 {
@@ -145,6 +139,7 @@ void stop() //tat toan bo den
   digitalWrite(pinY, LOW);
   digitalWrite(pinG, LOW);
   kDelay(0); //huy bo thoi gian sang den
+  slowLight->stop();
   setStateIdle();   //dat ve trang thai nhan roi
 }
 

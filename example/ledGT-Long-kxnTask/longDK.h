@@ -35,7 +35,7 @@ void setup()  //chinh sua cot den 1 va cot den 2 tai day
   longCross2.setPin2(5, 4, 3); 
   // longCross1.setup(3000, 1000);
   // longCross2.setup(3000, 1000);
-  longCross1.setup(3000, 1000, &longBlinkY1);
+  longCross1.setup(3000, 1000, &longBlinkY1); //sang den xanh 3000ms, sang den vang 1000ms, thoi gian nhay den vang theo longBlink
   longCross2.setup(3000, 1000, &longBlinkY2);
 
   //Che do nhay den vang
