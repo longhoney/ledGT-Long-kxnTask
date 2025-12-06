@@ -1,0 +1,19 @@
+Cơ bản của cơ bản #1: Blink.ino
+Cấu trúc bài Blink.ino gồm 2 hàm setup() và loop(). Vi điều khiển chạy từ setup(), xong rồi sang loop().
+
+Hàm setup() dùng để cấu hình: chương trình tương tác với đối tượng nào, muốn đối tượng đó làm gì. 
+	pinMode(LED_BUILTIN, OUTPUT); LED_BUILTIN là chân D13. Tức chương trình sẽ tương tác với chân D13, muốn nó hoạt động như ngõ ra
+	Các chương trình chạy 1 lần, có thể dùng trong hàm setup. Lệnh pinMode() cũng dùng 1 lần cho toàn bộ chương trình.
+
+
+Hàm loop() dùng để chạy chương trình chính, lặp lại mãi mãi.
+	digitalWrite(LED_BUILTIN, HIGH);  // turn the LED on. Vì đã thiết lập chân D13 là ngõ ra, nên ta có thể yêu cầu nó truyền tín hiệu - HIGH hay không truyền tín hiệu - LOW
+	Lệnh pinMode(,OUTPUT) sẽ đi với lệnh digitalWrite(). Ngược lại Lệnh pinMode(,INPUT) sẽ đi với lệnh digitalRead()
+
+	delay(a); NGưng toàn bộ chương trình trong a (ms)
+
+Cơ bản của cơ bản #2: BlinkWithOutDelay.ino
+	Turns on and off a light emitting diode (LED) connected to a digital pin, without using the delay() function. This means that other code can run at the same time without being interrupted by the LED code.
+
+Cơ bản của cơ bản #3: Fade.ino
+
