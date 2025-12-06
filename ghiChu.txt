@@ -6,6 +6,7 @@ Lập trình mô phỏng lại Đèn giao thông ở ngoài thực tế. Ở ngo
 Hai chế độ hoạt động cơ bản: đèn cảnh báo giảm tốc độ: sáng/tắt đèn vàng mỗi 1 giây và đèn phân tuyến: sáng luân phiên 3 đèn đỏ - vàng - xanh lá. Giả sử tôi chưa biết các chương trình cao siêu, tôi sẽ dùng chương trình "Blink.ino" để mô phỏng chế độ sáng/tắt đèn vàng mỗi 1 giây. Tôi sẽ sửa lại chương trình "Blink.ino" (Examples của ArduinoIDE) sao cho đèn sáng luân phiên 3 màu: "Bật đèn đỏ - delay5s - Tắt đèn đỏ, Bật đèn xanh - delay3s - Tắt đèn xanh,Bật đèn vàng - delay2s - Tắt đèn vàng"
 
 Anh Ngọc góp ý rằng, tôi dùng hàm delay có thể hoạt động tốt với chương trình cơ bản, nhưng ở chương trình nâng cao, hàm delay gây tắc nghẽn chương trình. Chương trình lớn sẽ bị trì hoãn vì 1 tác vụ nhỏ thực hiện hàm delay, hay sẽ không thể chạy song song 2 tác vụ nhỏ khi 1 trong 2 tác vụ thực hiện hàm delay. 
+====
 
 Tôi quay lại mục Examples của ArduinoIDE, tôi thấy chương trình "BlinkWithoutDelay.ino" [Turns on and off a light emitting diode (LED) connected to a digital pin, without using the delay() function. This means that other code can run at the same time without being interrupted by the LED code.]. Tôi dễ dàng dùng nó cho chương trình sáng/tắt đèn vàng mỗi 1 giây và sửa lại chương trình 1 chút để dùng cho chương trình sáng 3 đèn luân phiên.
 	Tôi tại hiểu là Hàm millis() sẽ đếm từ con số bắt đầu đến con số kết thúc, bước đếm là 1ms.
@@ -14,5 +15,14 @@ Tôi quay lại mục Examples của ArduinoIDE, tôi thấy chương trình "Bl
 Bài tập của tôi: Dùng hàm millis() này điều khiển 3 đèn sáng luân phiên
 	Ý tưởng: Dùng hàm millis() đếm 3 đầu cho sáng đèn đỏ, 2 giây tiếp cho sáng đèn xanh, 1 giây tiếp theo cho sáng đèn vàng. Rồi lặp lại chu trình này mãi mãi
 	Kết quả: Tôi làm 1 cách thô sơ, kết quả vẫn như mong đợi: 3 đèn sáng luân phiên. Nhưng đèn xanh lá lại không tắt hẳn mà sáng mờ, và chỉ 1 mình đèn này bị
+====
+
+Tôi tiếp tục quay lại mục Examples của ArduinoIDE, tôi thấy chương trình "Fade.ino". Chương trình cũng dùng phương pháp đếm từ số bắt đầu đến số kết thúc, theo 1 bước đếm. Ngoài ra còn có cách đảo biến đếm để chương tự đếm ngược về.
+	1 kiểu điều kiện if lần đầu tôi gặp: if (brightness <= 0 || brightness >= 255). Tôi đoán || có nghĩa hoặc là
+	Nhưng chương trình Fade này có dùng hàm delay, nên không dùng cho dự án LED giao thông được
+====
+
+Tôi tiếp tục quay lại mục Examples của ArduinoIDE, tôi thấy chương trình "Debounce". Chương trình tạo ra với mục đích chống dội nút nhấn khi sử dụng nút nhấn để điều khiển đèn [There's a minimum delay between toggles to debounce the circuit (i.e. to ignore noise)] Dù miêu tả chương trình có dùng từ khóa delay, nhưng trong chương trình không dùng delay. Vì vậy tôi có thể áp dụng chương trình này nếu tôi muốn mô phỏng thêm cả tủ điện điều khiển đèn giao thông
+
 
 
