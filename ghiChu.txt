@@ -27,7 +27,10 @@ Tôi tiếp tục quay lại mục Examples - Digital của ArduinoIDE, tôi th�
 
 Chương trình ReadASCIIString tại Examples - Communication có hàm Serial.read(), tức là hàm dùng để đọc dữ liệu người dùng nhập vào ô nhập liệu của Serial Monitor
 
-Chương trình SerialEvent tại Examples - Communication là chương trình hiển thị lại nội dung người dùng nhập vào ô nhập liệu và hiển thị lên trên màn hình Serial. CHương trình cho phép gõ thành chuỗi ký tự dài, cho gõ tiếng việt và cho gõ khoảng trắng.
+Chương trình SerialEvent tại Examples - Communication là chương trình hiển thị lại nội dung người dùng nhập vào ô nhập liệu và hiển thị lên trên màn hình Serial. CHương trình cho phép gõ thành chuỗi ký tự dài, cho gõ tiếng việt và cho gõ khoảng trắng. Chương trình kxnTask giao thông có dùng phương pháp này để người dùng chọn chương trình điều khiển đèn ...
+====
+
+Tại mục Examples - Control có 2 chương trình switchCase và switchCase2, cũng được dùng trong bài code kxnTask giao thông. Đặc biệt là chương trình switchCase2 có nhiều điểm tương đồng
 
 
 
