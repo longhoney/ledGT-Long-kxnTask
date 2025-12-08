@@ -2,7 +2,7 @@
   Y tuong: Dieu khien den giao thong thong qua Serial Monitor (Noline Ending)
     - '0': Tat toan bo led
     - '1': Chuyen den cho nguoi di bo qua duong
-    - '2': Nhay den vang canh bao 1 giay sang 1 giay tat
+    - '2': Nhay den vang canh bao sang/tat luan phien moi 1 giay
     - '3': Cot den hoat dong voi 3 den luan phien
     - '4': Giu nguyen tinh trang den de xe uu tien di qua #1 R1-G2
     - '5': Giu nguyen tinh trang den de xe uu tien di qua #2 G1-R2
