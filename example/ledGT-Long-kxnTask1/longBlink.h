@@ -13,7 +13,10 @@ unsigned long timeON; //Bien luu gia tri thoi gian sang den
   //unsigned la kieu so nguyen khong am
   //long la kieu du lieu su dung nhieu bo nho de luu gia tri
 unsigned long timeOFF; //Bien luu gia tri thoi gian tat den
+<<<<<<< HEAD
 
+=======
+>>>>>>> 12a226f7f2c45ec1cd58d132c834499ebc264c2f
 void setup(uint8_t pin_, unsigned long timeON_, unsigned long timeOFF_)  //tao khung de dien so thoi gian muon den sang, chan tin hieu muon su dung
 {
   pin = pin_;
