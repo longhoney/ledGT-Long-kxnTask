@@ -31,6 +31,10 @@ Chương trình SerialEvent tại Examples - Communication là chương trình h
 ====
 
 Tại mục Examples - Control có 2 chương trình switchCase và switchCase2, cũng được dùng trong bài code kxnTask giao thông. Đặc biệt là chương trình switchCase2 có nhiều điểm tương đồng
+========================
+
+12/12/2025
+
 
 
 
