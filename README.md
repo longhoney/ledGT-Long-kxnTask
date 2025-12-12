@@ -5,6 +5,7 @@ git add . // git add examples/<File_Name>
 git status
 git commit -m"editted readme"
 git push
+Nếu dùng 2 máy khác nhau, cần nhập lệnh git pull trước khi git push ...
 
 06/12/2025 Khởi động lại dự án
 Xem lại file trước để nắm dàn ý. Bắt đầu với ý tưởng
